@@ -16,6 +16,4 @@
     @enderror
 
     <button wire:click="save" style="margin-top: 10px; background: #007BFF; color: white; padding: 10px; border: none; border-radius: 5px;">Save</button>
-
-    <p style="margin-top: 20px;">Name: <strong>{{ $nama }}</strong></p>
 </div>

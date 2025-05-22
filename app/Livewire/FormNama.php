@@ -22,7 +22,7 @@ class FormNama extends Component
     {
         $this->validate();
 
-        session()->flash('message', "Name '{$this->nama}' saved successfully!");
+        session()->flash('message', "Name {$this->nama} saved successfully!");
         $this->reset('nama');
     }
 
