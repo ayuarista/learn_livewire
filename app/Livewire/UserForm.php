@@ -9,6 +9,7 @@ class UserForm extends Component
 {
     public $nama = '';
     public $email = '';
+    public $search = '';
 
     protected $rules = [
         'nama' => 'required|min:3',
@@ -30,9 +31,20 @@ class UserForm extends Component
         session()->flash('message', 'Data saved successfully!');
         $this->reset(['nama', 'email']);
     }
+    public function delete($id)
+    {
+        User::findOrFail($id)->delete();
+        session()->flash('message', 'Data removed successfully!');
+    }
+
     public function render()
     {
-        $users = User::latest()->get();
-        return view('livewire.user-form', compact ('users'));
+        $keyword = trim($this->search);
+
+        $users = User::where('nama', 'like', '%' . $this->search . '%')
+            ->orWhere('email', 'like', '%' . $this->search . '%')
+            ->latest()
+            ->get();
+        return view('livewire.user-form', compact('users'));
     }
 }
