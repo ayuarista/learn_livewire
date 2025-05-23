@@ -10,11 +10,11 @@ class UserForm extends Component
     public $nama = '';
     public $email = '';
 
-    protected $rules =
-    [
-        $nama => 'required|min:3',
-        $email => 'required|email|unique:users,email'
+    protected $rules = [
+        'nama' => 'required|min:3',
+        'email' => 'required|email|unique:users,email',
     ];
+
 
     public function updated($property)
     {

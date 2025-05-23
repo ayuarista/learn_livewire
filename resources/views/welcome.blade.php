@@ -8,7 +8,7 @@
     @livewireStyles
 </head>
 <body>
-    @livewire('form-nama')
+    @livewire('user-form')
     @livewireScripts
 </body>
 </html>

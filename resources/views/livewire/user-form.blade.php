@@ -1,3 +1,39 @@
-<div>
-    {{-- If your happiness depends on money, you will never be happy with yourself. --}}
+<div style="max-width: 400px; margin: 100px auto; font-family: sans-serif;">
+    <h2>Please Input Name & Email!</h2>
+
+    @if (session()->has('message'))
+        <div style="background: #d4edda; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+            {{ session('message') }}
+        </div>
+    @endif
+    <input type="text"
+        wire:model="nama"
+        placeholder="Input your name"
+        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"
+    >
+    <input type="text"
+        wire:model="email"
+        placeholder="Input your email"
+        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"
+    >
+    @error('nama')
+        <span style="color: red; font-size: 14px;">{{ $message }}</span>
+    @enderror
+    @error('email')
+        <span style="color: red; font-size: 14px;">{{ $message }}</span>
+    @enderror
+
+    <button wire:click="save" style="margin-top: 10px; background: #007BFF; color: white; padding: 10px; border: none; border-radius: 5px;">Save</button>
+
+    <hr style="margin: 30px 0;">
+
+    <h3>Daftar User</h3>
+    <ul>
+        @forelse($users as $user)
+            <li>{{ $user->nama }} - {{ $user->email }}</li>
+        @empty
+            <li>Belum ada data.</li>
+        @endforelse
+    </ul>
+
 </div>
