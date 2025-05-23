@@ -1,4 +1,4 @@
-<div style="max-width: 400px; margin: 100px auto; font-family: sans-serif;">
+<div style="max-width: 400px; margin: 100px auto;">
     <h2>Please Input Name & Email!</h2>
 
     @if (session()->has('message'))
