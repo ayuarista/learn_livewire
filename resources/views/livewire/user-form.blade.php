@@ -1,57 +1,68 @@
-<div style="max-width: 400px; margin: 100px auto;">
-    <h2>Please Input Name & Email!</h2>
+<div class="max-w-xl mt-12 m-auto">
+    <h2 class="text-xl font-bold">Please Input Name & Email!</h2>
 
     @if (session()->has('message'))
         <div style="background: #d4edda; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
             {{ session('message') }}
         </div>
     @endif
-    <input type="text"
-        wire:model="nama"
-        placeholder="Input your name"
-        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"
-    >
-    @error('nama')
-        <span style="color: red; font-size: 14px;">{{ $message }}</span>
-    @enderror
-    <input type="text"
-        wire:model="email"
-        placeholder="Input your email"
-        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"
-    >
-    @error('email')
-        <span style="color: red; font-size: 14px;">{{ $message }}</span>
-    @enderror
 
-    <button wire:click="save" style="margin-top: 10px; background: #007BFF; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">Save</button>
+    <div class="flex items-center gap-4 mt-3">
+        <input type="text"
+            wire:model="nama"
+            placeholder="Input your name"
+            class="w-full border border-gray-300 p-2 focus:outline-none rounded-md"
+        >
+        @error('nama')
+            <span style="color: red; font-size: 14px;">{{ $message }}</span>
+        @enderror
+        <input type="text"
+            wire:model="email"
+            placeholder="Input your email"
+            class="w-full border border-gray-300 p-2 focus:outline-none rounded-md"
 
-    <hr style="margin: 30px 0;">
+        >
+        @error('email')
+            <span style="color: red; font-size: 14px;">{{ $message }}</span>
+        @enderror
+    </div>
 
-    <h3>Daftar User</h3>
-    <input type="text" wire:model="search" placeholder="Find User..." style="width: 100%; padding: 10px; margin-bottom: 10px;">
+    <button wire:click="save" class="w-full p-1 bg-indigo-500 text-white font-medium mt-2 rounded-md text-base">Save</button>
 
-    <table border="1" cellpadding="10" cellspacing="0" width="100%" style="border-collapse: collapse;">
-        <thead style="background-color: #f2f2f2;">
+    <hr style="margin: 30px 0;" class="text-gray-300">
+
+    <h3 class="text-lg font-semibold text-indigo-500">Daftar User</h3>
+    <input type="text" wire:model="search" placeholder="Find User..." class="w-full border border-gray-300 p-2 focus:outline-none rounded-md mt-2">
+
+    <table class="w-full mt-4 table-auto border border-gray-300 rounded-lg overflow-hidden">
+        <caption class="caption-bottom text-sm text-gray-500 mt-2">
+            Table 3.1: Professional wrestlers and their signature moves.
+        </caption>
+        <thead class="bg-indigo-100 text-left text-black">
             <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Action</th>
+                <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Email</th>
+                <th class="px-4 py-2">Action</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="divide-y divide-gray-200">
             @forelse ($users as $user)
-                <tr>
-                    <td>{{ $user->nama }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>
-                        <button wire:click="delete({{ $user->id }})" style="cursor: pointer;background: #dc3545; color:white; border: none; padding: 5px 10px; border-radius: 5px;">Delete</button>
+                <tr class="hover:bg-gray-50">
+                    <td class="px-4 py-2">{{ $user->nama }}</td>
+                    <td class="px-4 py-2">{{ $user->email }}</td>
+                    <td class="px-4 py-2">
+                        <button wire:click="delete({{ $user->id }})"
+                                class="bg-red-500 hover:cursor-pointer hover:bg-red-600 text-white text-[13px] px-3 py-1 rounded-md transition duration-200">
+                            Delete
+                        </button>
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="3">No data.</td>
+                    <td colspan="3" class="px-4 py-4 text-center text-gray-500">No data.</td>
                 </tr>
             @endforelse
         </tbody>
     </table>
+
 </div>
