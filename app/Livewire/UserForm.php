@@ -7,29 +7,35 @@ use Livewire\Component;
 
 class UserForm extends Component
 {
-    public $nama = '';
-    public $email = '';
-    public $search = '';
+    public $nama, $email, $userId;
 
     protected $rules = [
         'nama' => 'required|min:3',
-        'email' => 'required|email|unique:users,email',
+        'email' => 'required|email',
     ];
 
-
-    public function updated($property)
-    {
-        $this->validateOnly($property);
-    }
+    protected $listeners = ['editUser' => 'loadUser'];
 
     public function save()
     {
-        $validated = $this->validate();
+        $this->validate();
 
-        User::create($validated);
+        User::updateOrCreate(
+            ['id' => $this->userId],
+            ['nama' => $this->nama, 'email' => $this->email]
+        );
 
-        session()->flash('message', 'Data saved successfully!');
-        $this->reset(['nama', 'email']);
+        $this->reset(['nama', 'email', 'userId']);
+        $this->dispatch('userSaved');
+        session()->flash('success', 'Data saved successfully!');
+    }
+
+    public function loadUser($id)
+    {
+        $user = User::findOrFail($id);
+        $this->userId = $user->id;
+        $this->nama = $user->nama;
+        $this->email = $user->email;
     }
     public function delete($id)
     {

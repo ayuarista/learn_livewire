@@ -36,10 +36,11 @@
 
     <table class="w-full mt-4 table-auto border border-gray-300 rounded-lg overflow-hidden">
         <caption class="caption-bottom text-sm text-gray-500 mt-2">
-            Table 3.1: Professional wrestlers and their signature moves.
+            User List
         </caption>
-        <thead class="bg-indigo-100 text-left text-black">
+        <thead class="bg-indigo-100 text-center text-black">
             <tr>
+                <th class="px-4 py-2">No</th>
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Email</th>
                 <th class="px-4 py-2">Action</th>
@@ -47,7 +48,8 @@
         </thead>
         <tbody class="divide-y divide-gray-200">
             @forelse ($users as $user)
-                <tr class="hover:bg-gray-50">
+                <tr class="hover:bg-gray-50 text-center">
+                    <td>{{ $loop->iteration }}</td>
                     <td class="px-4 py-2">{{ $user->nama }}</td>
                     <td class="px-4 py-2">{{ $user->email }}</td>
                     <td class="px-4 py-2">
