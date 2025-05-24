@@ -30,14 +30,14 @@ class UserForm extends Component
             'email' => $this->email,
         ]);
 
-        session()->flash('message', 'Data berhasil disimpan!');
+        session()->flash('message', 'Data saved successfully!');
         $this->reset(['nama', 'email']);
     }
 
     public function delete($id)
     {
         User::findOrFail($id)->delete();
-        session()->flash('message', 'Data berhasil dihapus!');
+        session()->flash('message', 'Data removed successfully!');
     }
 
     public function render()

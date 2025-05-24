@@ -20,7 +20,6 @@
             wire:model="email"
             placeholder="Input your email"
             class="w-full border border-gray-300 p-2 focus:outline-none rounded-md"
-
         >
         @error('email')
             <span style="color: red; font-size: 14px;">{{ $message }}</span>
