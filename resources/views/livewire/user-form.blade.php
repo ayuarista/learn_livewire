@@ -65,5 +65,4 @@
             @endforelse
         </tbody>
     </table>
-
 </div>
